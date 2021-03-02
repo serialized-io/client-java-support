@@ -29,7 +29,7 @@
   <scm>
     <url>https://github.com/serialized-io/client-java-support</url>
     <connection>scm:git:git://github.com/serialized-io/client-java-support.git</connection>
-    <developerConnection>scm:git:git@github.com:serialized-io/serialized-dropwizard-archetype.git</developerConnection>
+    <developerConnection>scm:git:git@github.com:serialized-io/client-java-support.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
 
