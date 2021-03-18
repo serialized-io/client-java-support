@@ -22,6 +22,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import static java.lang.String.format;
+
 public class DynamoDbSequenceNumberTracker implements SequenceNumberTracker {
 
   private final AmazonDynamoDB dynamoDB;
@@ -63,7 +65,9 @@ public class DynamoDbSequenceNumberTracker implements SequenceNumberTracker {
   @Override
   public void updateLastConsumedSequenceNumber(long sequenceNumber) {
     Validate.isTrue(dynamoDBMapper != null, "DynamoDBMapper not initialized");
-    Validate.isTrue(sequenceNumber >= 0, "Last consumed sequence number cannot be negative!");
+
+    Validate.isTrue(sequenceNumber >= 0,
+        "Illegal sequenceNumber [%d] - last consumed sequence number cannot be negative", sequenceNumber);
 
     try {
       Map<String, ExpectedAttributeValue> expected = new HashMap<>();
@@ -76,7 +80,9 @@ public class DynamoDbSequenceNumberTracker implements SequenceNumberTracker {
           .withConditionalOperator(ConditionalOperator.OR));
 
     } catch (ConditionalCheckFailedException e) {
-      throw new IllegalArgumentException("Last consumed sequence number must be greater than current!");
+      throw new IllegalArgumentException(
+          format("Illegal sequenceNumber [%d] - last consumed sequence number must be greater than current",
+              sequenceNumber));
     }
 
   }
