@@ -37,6 +37,19 @@ public class DynamoDbSequenceNumberTrackerTest {
   }
 
   @Test
+  public void testUpdateMany() {
+    assertThat(sequenceNumberTracker.lastConsumedSequenceNumber()).isEqualTo(0);
+
+    int iterations = 100;
+
+    for (int i = 0; i <= iterations; ++i) {
+      sequenceNumberTracker.updateLastConsumedSequenceNumber(i);
+      assertThat(sequenceNumberTracker.lastConsumedSequenceNumber()).isEqualTo(i);
+    }
+    assertThat(sequenceNumberTracker.lastConsumedSequenceNumber()).isEqualTo(iterations);
+  }
+
+  @Test
   public void testSequenceNumberMustBePositive() {
     Throwable exception = assertThrows(IllegalArgumentException.class,
         () -> sequenceNumberTracker.updateLastConsumedSequenceNumber(-1));
