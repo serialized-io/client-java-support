@@ -34,7 +34,9 @@ public class DynamoDbSequenceNumberTracker implements SequenceNumberTracker {
   public DynamoDbSequenceNumberTracker(AmazonDynamoDB dynamoDB, String tableName, String trackerName) {
     this.dynamoDB = dynamoDB;
     this.dynamoDBMapper = new DynamoDBMapper(dynamoDB,
-        DynamoDBMapperConfig.builder().withTableNameResolver((clazz, config) -> tableName).build()
+        DynamoDBMapperConfig.builder()
+            .withConsistentReads(DynamoDBMapperConfig.ConsistentReads.CONSISTENT)
+            .withTableNameResolver((clazz, config) -> tableName).build()
     );
     this.tableName = tableName;
     this.trackerName = trackerName;
