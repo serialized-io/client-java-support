@@ -5,7 +5,7 @@
 
   <groupId>io.serialized</groupId>
   <artifactId>serialized-client-dynamodb</artifactId>
-  <version>1.0.2-SNAPSHOT</version>
+  <version>1.0.2</version>
   <packaging>jar</packaging>
 
   <name>Serialized Java Client DynamoDb support</name>
@@ -29,7 +29,7 @@
     <url>https://github.com/serialized-io/client-java-support</url>
     <connection>scm:git:git://github.com/serialized-io/client-java-support.git</connection>
     <developerConnection>scm:git:git@github.com:serialized-io/client-java-support.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>serialized-client-dynamodb-1.0.2</tag>
   </scm>
 
   <distributionManagement>
