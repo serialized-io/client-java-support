@@ -29,7 +29,7 @@ public class DynamoDbSequenceNumberTracker implements SequenceNumberTracker {
   private final AmazonDynamoDB dynamoDB;
   private final String tableName;
   private final String trackerName;
-  private final DynamoDBMapper dynamoDBMapper;
+  protected final DynamoDBMapper dynamoDBMapper;
 
   public DynamoDbSequenceNumberTracker(AmazonDynamoDB dynamoDB, String tableName, String trackerName) {
     this.dynamoDB = dynamoDB;
